@@ -8,7 +8,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_SHORT_URL_SUCCESS: {
       console.log("create short url success");
-      console.table(action);
 
       return {
         ...state,
@@ -28,10 +27,7 @@ const reducer = (state = initialState, action) => {
           }
         })
       }
-      
-
     }
-
     default:
       return state;
   }

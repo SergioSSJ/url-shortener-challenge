@@ -1,4 +1,4 @@
-import {CREATE_SHORT_URL,DELETE_URL,GET_DELETE_TOKEN} from '../actions'
+import {CREATE_SHORT_URL,GET_DELETE_TOKEN} from '../actions'
 
 
 export const createShortUrl=(url)=>{
