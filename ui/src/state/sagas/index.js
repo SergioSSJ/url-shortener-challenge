@@ -15,7 +15,6 @@ const createUrlFetch = url => {
 function* createShortUrl(action) {
   const { payload } = action;
   try {
-    
     const data = yield call(createUrlFetch, payload);
     const responseBody = data.json();
     const json = yield responseBody;
@@ -26,15 +25,29 @@ function* createShortUrl(action) {
   }
 }
 
+const getRemoveTokenFetch = url => {
+    
+    const headers = new Headers({
+      "Content-Type": "application/json"
+    });
+    return fetch("/", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({ url: url })
+    });
+  };
+
+
+
+
 function* deleteUrl(action) {
   console.log("deleteUrlGenerator");
 }
 
-//watcher add todo
+//watchers
 function* addTodoWatcher() {
   yield takeLatest(CREATE_SHORT_URL, createShortUrl);
 }
-//watcher delete todo
 function* deleteTodoWatcher() {
   yield takeLatest(DELETE_URL, deleteUrl);
 }
