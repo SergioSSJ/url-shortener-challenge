@@ -15,6 +15,7 @@ const createUrlFetch = url => {
 function* createShortUrl(action) {
   const { payload } = action;
   try {
+    
     const data = yield call(createUrlFetch, payload);
     const responseBody = data.json();
     const json = yield responseBody;

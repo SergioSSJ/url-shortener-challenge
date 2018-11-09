@@ -5,6 +5,7 @@ import validUrl from "valid-url";
 export class TextInputUrlShortener extends Component {
   constructor() {
     super();
+    this.textInput = React.createRef();
     this.state = {
       url: "",
       isValid: false
@@ -23,19 +24,27 @@ export class TextInputUrlShortener extends Component {
       };
     });
   };
-  handleClick=()=>{
-      console.log('handle click')
-      this.props.createShortUrl(this.state.url)
-  }
+  handleClick = () => {
+    this.props.createShortUrl(this.state.url);
+    this.textInput.value = "";
+
+    this.setState(state => {
+      return {
+        url: "",
+        isValid: false
+      };
+    });
+  };
 
   render() {
     return (
       <div>
         Shortener The shortest way to short
         <div>
-          <Input onChange={this.handleChange} />
-
-          <Button disabled={!this.state.isValid} onClick={this.handleClick}>Create</Button>
+          <Input onChange={this.handleChange} inputRef={e => (this.textInput = e)} />
+          <Button disabled={!this.state.isValid} onClick={this.handleClick}>
+            Create
+          </Button>
         </div>
       </div>
     );

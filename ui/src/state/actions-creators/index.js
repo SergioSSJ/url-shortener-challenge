@@ -9,6 +9,8 @@ export const createShortUrl=(url)=>{
     }
 }
 export const deleteUrl=(hash)=>{
+    console.log("delete url: "+hash)
+
     return{
         type:DELETE_URL,
         payload:hash

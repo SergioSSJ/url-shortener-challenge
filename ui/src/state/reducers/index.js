@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        urlItems: state.urlItems.concat(action.payload)
+        urlItems: [action.payload,...state.urlItems]
       };
     }
 

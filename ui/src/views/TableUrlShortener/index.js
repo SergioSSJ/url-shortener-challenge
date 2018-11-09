@@ -7,14 +7,20 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Button } from '@material-ui/core';
+import AccessTimeIcon from '@material-ui/icons/AccessTime'
+import LinkIcon from '@material-ui/icons/Link'
+import GoIcon from '@material-ui/icons/Redo'
+import DeleteIcon from '@material-ui/icons/Delete'
+
 
 
 
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.default,
+    color: theme.palette.common.Gray,
   },
   body: {
     fontSize: 14,
@@ -24,11 +30,11 @@ const CustomTableCell = withStyles(theme => ({
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
   table: {
     minWidth: 700,
+    marginTop:"0px"
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -36,6 +42,10 @@ const styles = theme => ({
     },
   },
 });
+
+const goToUrl=(url)=>{
+  window.open(url, '_blank');
+}
 
 
 
@@ -48,24 +58,38 @@ const TableUrlShortener = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <CustomTableCell>Dessert (100g serving)</CustomTableCell>
-            <CustomTableCell numeric>Calories</CustomTableCell>
-            <CustomTableCell numeric>Fat (g)</CustomTableCell>
-            <CustomTableCell numeric>Carbs (g)</CustomTableCell>
-            <CustomTableCell numeric>Protein (g)</CustomTableCell>
+            <CustomTableCell>Short</CustomTableCell>
+            <CustomTableCell>Link</CustomTableCell>
+            <CustomTableCell>Date</CustomTableCell>
+            <CustomTableCell>Visits</CustomTableCell>
+            <CustomTableCell></CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.urlItems.map(row => {
+          {props.urlItems.map(row => {
             return (
-              <TableRow className={classes.row} key={row.id}>
+              <TableRow className={classes.row} key={row.hash}>
                 <CustomTableCell component="th" scope="row">
-                  {row.name}
+                  <LinkIcon/>{row.shorten}
                 </CustomTableCell>
-                <CustomTableCell numeric>{row.calories}</CustomTableCell>
-                <CustomTableCell numeric>{row.fat}</CustomTableCell>
-                <CustomTableCell numeric>{row.carbs}</CustomTableCell>
-                <CustomTableCell numeric>{row.protein}</CustomTableCell>
+                <CustomTableCell component="th" scope="row">
+                  {row.url}
+                </CustomTableCell>
+                <CustomTableCell component="th" scope="row">
+                  <AccessTimeIcon/>{row.date.toString()}
+                </CustomTableCell>
+                <CustomTableCell component="th" scope="row">
+                  -
+                </CustomTableCell>
+                <CustomTableCell component="th" scope="row">
+                  <Button variant="contained" onClick={()=>{goToUrl(row.url)}}>
+                    <GoIcon/>
+                  </Button>
+                  <Button variant="contained" onClick={()=>{props.deleteUrl(row.hash)}}>
+                    <DeleteIcon/>
+                  </Button>
+                </CustomTableCell>
+
               </TableRow>
             );
           })}
@@ -74,4 +98,8 @@ const TableUrlShortener = (props) => {
     </Paper>
   );
 }
-export default TableUrlShortener
+TableUrlShortener.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(TableUrlShortener);

@@ -15,11 +15,11 @@ export class UrlShortenerContainer extends Component {
     return (
       <div>
         <Grid container>
-          <Grid item xs={6}>
-            <TextInputUrlShortener urlItems={this.props.urlItems} createShortUrl={this.props.createShortUrl} />
+          <Grid item xs={3}>
+            <TextInputUrlShortener  createShortUrl={this.props.createShortUrl} />
           </Grid>
-          <Grid item xs={6}>
-            <TableUrlShortener deleteUrl={this.props.deleteUrl} />
+          <Grid item xs={9}>
+            <TableUrlShortener urlItems={this.props.urlItems} deleteUrl={this.props.deleteUrl} />
           </Grid>
         </Grid>
       </div>
