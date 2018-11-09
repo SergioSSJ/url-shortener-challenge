@@ -32,6 +32,7 @@ router.get('/:hash', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
+  console.log(req.body)
 console.log(req.body.url)
   // TODO: Validate 'req.body.url' presence
 
