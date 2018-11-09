@@ -24,9 +24,6 @@
   },
   "engines": {
     "node": ">7.6.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.9.0",
-    "eslint-plugin-node": "^5.2.0"
   }
+
 }
