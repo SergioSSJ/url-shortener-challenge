@@ -66,9 +66,9 @@ export function* deleteUrlSaga(action) {
   const { payload } = action;
   try {
     const data = yield call(deleteFetchApi, payload.hash, payload.removeToken);
-    yield put({ type: DELETE_URL_SUCCESS, payload: { hash: payload, removeToken: data.removeToken } });
+    yield put({ type: DELETE_URL_SUCCESS, payload: { hash: payload.hash, removeToken: payload.removeToken } });
   } catch (e) {
-    yield put({ type: DELETE_URL_FAILURE, payload: e });
+    yield put({ type: DELETE_URL_FAILURE });
   }
 }
 
