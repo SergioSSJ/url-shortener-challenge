@@ -24,7 +24,8 @@ const CustomTableCell = withStyles(theme => ({
     fontSize: 14,
     maxWidth:150,
 overflow:"hidden",
-textOverflow:"ellipsis"
+textOverflow:"ellipsis",
+whiteSpace:"nowrap"
   }
 }))(TableCell);
 
@@ -69,7 +70,7 @@ const TableUrlShortener = props => {
 
                 <div className="short">
                   <LinkIcon />
-                  <div style={{marginLeft:"10px"}}>
+                  <div style={{marginLeft:"10px"}} className="short-child">
                     {row.shorten}
                   </div>
                 </div>

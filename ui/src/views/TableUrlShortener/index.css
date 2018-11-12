@@ -5,9 +5,14 @@
 
 .short {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
 }
-
+.short-child{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .date {
   display: flex;
   flex-direction: row;

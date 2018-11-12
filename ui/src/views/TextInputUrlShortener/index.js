@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { TextField, Button,Input,Typography } from "@material-ui/core";
+import { TextField, Button, Input, Typography } from "@material-ui/core";
 import validUrl from "valid-url";
-import './index.css'
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import "./index.css";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const styles = theme => ({
   button: {
-    backgroundColor:"#133c7a"
+    backgroundColor: "#133c7a"
   }
 });
 
@@ -46,22 +46,37 @@ export class TextInputUrlShortener extends Component {
   };
 
   render() {
-
-    const {classes}=this.props
+    const { classes } = this.props;
 
     return (
-      <div className="shortener" >
-      <div className="shortener-title">
-        <Typography color="inherit"variant="h3">SHORTENER</Typography>
-        <Typography color="inherit" varinat="p">The shortest way to short!.</Typography>
-      </div>
-      
+      <div className="shortener">
+        <div className="shortener-title">
+          <Typography color="inherit" variant="h3">
+            SHORTENER
+          </Typography>
+          <Typography color="inherit" varinat="p">
+            The shortest way to short!.
+          </Typography>
+        </div>
+
         <div className="text-input">
-          <div >
-            <TextField  style={{backgroundColor:"white",width:"90%"}}onChange={this.handleChange} inputRef={e => (this.textInput = e)} variant="outlined" placeholder="http://" />
+          <div>
+            <TextField
+              style={{ backgroundColor: "white", width: "90%" }}
+              onChange={this.handleChange}
+              inputRef={e => (this.textInput = e)}
+              variant="outlined"
+              placeholder="http://"
+            />
           </div>
           <div>
-            <Button className={classes.button} style={{marginTop:"20px",color:"white"}} variant="contained" disabled={!this.state.isValid} onClick={this.handleClick}>
+            <Button
+              className={classes.button}
+              style={{ marginTop: "20px", color: "white" }}
+              variant="contained"
+              disabled={!this.state.isValid}
+              onClick={this.handleClick}
+            >
               Short!
             </Button>
           </div>
@@ -72,9 +87,8 @@ export class TextInputUrlShortener extends Component {
 }
 
 TextInputUrlShortener.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 //export default TextInputUrlShortener;
 export default withStyles(styles)(TextInputUrlShortener);
-

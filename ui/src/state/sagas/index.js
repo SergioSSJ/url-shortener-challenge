@@ -10,37 +10,21 @@ import {
   GET_DELETE_TOKEN_FAILURE
 } from "../actions";
 
-export let createUrlFetchApi = async  (url) => {
-  console.log("create::::");
-
+export let createUrlFetchApi = async url => {
   const headers = new Headers({
     "Content-Type": "application/json"
   });
 
-  let response= await fetch("/", {method: "POST",
-    headers: headers,
-    body: JSON.stringify({ url: url })
-  })
-  let result = await response.json()
-  return result
-  /*
-  return fetch("/", {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ url: url })
-  });*/
+  let response = await fetch("/", { method: "POST", headers: headers, body: JSON.stringify({ url: url }) });
+  let result = await response.json();
+  return result;
 };
 
 export function* createShortUrlSaga(action) {
   const { payload } = action;
   try {
     const data = yield call(createUrlFetchApi, payload);
-    console.log("data: ");
-    console.log(data);
-   // const responseBody = data.json();
-   // console.log(responseBody); //
-   // const json = yield responseBody;
-   const date=new Date()
+    const date = new Date();
     yield put({ type: CREATE_SHORT_URL_SUCCESS, payload: { ...data, date: date } });
   } catch (e) {
     yield put({ type: CREATE_SHORT_URL_FAILURE });

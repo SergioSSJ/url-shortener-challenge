@@ -6,9 +6,4 @@ describe("UserList", () => {
 
     expect(2).toEqual(2)
   });
-
-  it("renders a list of rows with users", () => {
-
-    expect(2).toEqual(2);
-    });
 });

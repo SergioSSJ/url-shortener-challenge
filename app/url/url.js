@@ -90,7 +90,6 @@ async function shorten(url, hash) {
  * @returns {boolean}
  */
 function isValid(url) {
-
   return validUrl.isUri(url);
 }
 
