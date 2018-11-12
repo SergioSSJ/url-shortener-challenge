@@ -1,0 +1,14 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.short {
+  display: flex;
+  flex-direction: row;
+}
+
+.date {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import { Input, Button } from "@material-ui/core";
+import { TextField, Button,Input,Typography } from "@material-ui/core";
 import validUrl from "valid-url";
+import './index.css'
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
+const styles = theme => ({
+  button: {
+    backgroundColor:"#133c7a"
+  }
+});
 
 export class TextInputUrlShortener extends Component {
   constructor() {
@@ -37,18 +46,35 @@ export class TextInputUrlShortener extends Component {
   };
 
   render() {
+
+    const {classes}=this.props
+
     return (
-      <div>
-        Shortener The shortest way to short
-        <div>
-          <Input onChange={this.handleChange} inputRef={e => (this.textInput = e)} />
-          <Button disabled={!this.state.isValid} onClick={this.handleClick}>
-            Create
-          </Button>
+      <div className="shortener" >
+      <div className="shortener-title">
+        <Typography color="inherit"variant="h3">SHORTENER</Typography>
+        <Typography color="inherit" varinat="p">The shortest way to short!.</Typography>
+      </div>
+      
+        <div className="text-input">
+          <div >
+            <TextField  style={{backgroundColor:"white",width:"90%"}}onChange={this.handleChange} inputRef={e => (this.textInput = e)} variant="outlined" placeholder="http://" />
+          </div>
+          <div>
+            <Button className={classes.button} style={{marginTop:"20px",color:"white"}} variant="contained" disabled={!this.state.isValid} onClick={this.handleClick}>
+              Short!
+            </Button>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default TextInputUrlShortener;
+TextInputUrlShortener.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+//export default TextInputUrlShortener;
+export default withStyles(styles)(TextInputUrlShortener);
+

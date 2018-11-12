@@ -1,0 +1,17 @@
+.shortener{
+    height: 500px;
+    background-color: rgb(19, 60, 122);
+    color:white;
+}
+.shortener-title{
+    padding-top: 200px;
+    margin-left: 20px;
+}
+.text-input{
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: gray;
+    padding-bottom: 20px;
+
+}
