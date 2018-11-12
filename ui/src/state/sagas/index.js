@@ -41,17 +41,16 @@ export const getRemoveTokenFetchApi = async hash => {
   });
   const result = await response.json();
 
-  return result;
+  return result.removeToken;
 };
 
 export function* getDeleteTokenUrlSaga(action) {
   const { payload } = action;
   try {
-    const data = yield call(getRemoveTokenFetchApi, payload);
-
-    yield put({ type: DELETE_URL, payload: { hash: payload, removeToken: data.removeToken } });
+    const removeToken = yield call(getRemoveTokenFetchApi, payload);
+    yield put({ type: DELETE_URL, payload: { hash: payload, removeToken: removeToken } });
   } catch (e) {
-    yield put({ type: GET_DELETE_TOKEN_FAILURE, payload: e });
+    yield put({ type: GET_DELETE_TOKEN_FAILURE });
   }
 }
 

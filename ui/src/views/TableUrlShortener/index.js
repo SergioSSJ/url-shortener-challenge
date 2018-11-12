@@ -12,8 +12,8 @@ import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import LinkIcon from "@material-ui/icons/Link";
 import GoIcon from "@material-ui/icons/Redo";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {formatDate} from "./util"
-import './index.css'
+import { formatDate } from "./util";
+import "./index.css";
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -22,16 +22,16 @@ const CustomTableCell = withStyles(theme => ({
   },
   body: {
     fontSize: 14,
-    maxWidth:150,
-overflow:"hidden",
-textOverflow:"ellipsis",
-whiteSpace:"nowrap"
+    maxWidth: 150,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
   }
 }))(TableCell);
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    width: "100%"
   },
   table: {
     minWidth: 700,
@@ -66,35 +66,30 @@ const TableUrlShortener = props => {
           {props.urlItems.map(row => {
             return (
               <TableRow className={classes.row} key={row.hash}>
-                <CustomTableCell component="th" scope="row" style={{width:"100px"}}>
-
-                <div className="short">
-                  <LinkIcon />
-                  <div style={{marginLeft:"10px"}} className="short-child">
-                    {row.shorten}
+                <CustomTableCell component="th" scope="row" style={{ width: "100px" }}>
+                  <div className="short">
+                    <LinkIcon />
+                    <div style={{ marginLeft: "10px" }} className="short-child">
+                      {row.shorten}
+                    </div>
                   </div>
-                </div>
-                  
                 </CustomTableCell>
-                <CustomTableCell component="th" scope="row" >
+                <CustomTableCell component="th" scope="row">
                   {row.url}
                 </CustomTableCell>
                 <CustomTableCell component="th" scope="row">
-<div className="date">
- <AccessTimeIcon />
-                  <div style={{marginLeft:"10px"}}>
-                    {formatDate(row.date)}
+                  <div className="date">
+                    <AccessTimeIcon />
+                    <div style={{ marginLeft: "10px" }}>{formatDate(row.date)}</div>
                   </div>
-</div>
-                 
-                  
                 </CustomTableCell>
                 <CustomTableCell component="th" scope="row">
                   -
                 </CustomTableCell>
                 <CustomTableCell component="th" scope="row">
                   <div className="buttons">
-                    <Button style={{backgroundColor:"green"}}
+                    <Button
+                      style={{ backgroundColor: "green" }}
                       variant="contained"
                       onClick={() => {
                         goToUrl(row.url);
@@ -103,7 +98,7 @@ const TableUrlShortener = props => {
                       <GoIcon />
                     </Button>
                     <Button
-                    style={{backgroundColor:"red"}}
+                      style={{ backgroundColor: "red" }}
                       variant="contained"
                       onClick={() => {
                         props.deleteUrl(row.hash);
