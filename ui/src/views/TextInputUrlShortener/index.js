@@ -87,7 +87,8 @@ export class TextInputUrlShortener extends Component {
 }
 
 TextInputUrlShortener.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  createShortUrl:PropTypes.object.isRequired
 };
 
 //export default TextInputUrlShortener;

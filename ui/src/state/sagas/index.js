@@ -14,7 +14,6 @@ export let createUrlFetchApi = async url => {
   const headers = new Headers({
     "Content-Type": "application/json"
   });
-
   let response = await fetch("/", { method: "POST", headers: headers, body: JSON.stringify({ url: url }) });
   let result = await response.json();
   return result;

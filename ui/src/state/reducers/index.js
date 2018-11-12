@@ -7,26 +7,22 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_SHORT_URL_SUCCESS: {
-      console.log("create short url success");
-
       return {
         ...state,
-        urlItems: [action.payload,...state.urlItems]
+        urlItems: [action.payload, ...state.urlItems]
       };
     }
-    case GET_DELETE_TOKEN:{
-      console.log("get delete token in reducer")
-      console.log(action.payload);
+    case GET_DELETE_TOKEN: {
       return {
         ...state,
-        urlItems:state.urlItems.filter((el)=>{
-          if(el.hash==action.payload){
-            return false
-          }else{
-            return true
+        urlItems: state.urlItems.filter(el => {
+          if (el.hash == action.payload) {
+            return false;
+          } else {
+            return true;
           }
         })
-      }
+      };
     }
     default:
       return state;

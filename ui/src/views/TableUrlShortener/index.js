@@ -116,8 +116,10 @@ const TableUrlShortener = props => {
     </Paper>
   );
 };
+
 TableUrlShortener.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  deleteUrl:PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(TableUrlShortener);
