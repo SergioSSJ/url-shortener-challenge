@@ -5,7 +5,6 @@ import { put, takeLatest, all, call } from "redux-saga/effects";
 import * as sagas from "./index.js";
 import { throwError } from "rxjs";
 
-
 describe("sagas testing", () => {
   it("create short url saga success", () => {
     const gen = createShortUrlSaga({ payload: "url" });
@@ -18,7 +17,6 @@ describe("sagas testing", () => {
   it("create short url saga failure", () => {
     const gen = createShortUrlSaga({ payload: "url" });
     expect(gen.next().value).toEqual(call(createUrlFetchApi, "url"));
-    expect(gen.throw('error').value).toEqual(put({ type: CREATE_SHORT_URL_FAILURE}))
-});
-
+    expect(gen.throw("error").value).toEqual(put({ type: CREATE_SHORT_URL_FAILURE }));
+  });
 });

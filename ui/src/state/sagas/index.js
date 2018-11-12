@@ -31,39 +31,43 @@ export function* createShortUrlSaga(action) {
   }
 }
 
-export const getRemoveTokenFetchApi = hash => {
+export const getRemoveTokenFetchApi = async hash => {
   const headers = new Headers({
     Accept: "application/json"
   });
-  return fetch(`/${hash}`, {
+
+  const response = await fetch(`/${hash}`, {
     headers: headers
   });
+  const result = await response.json();
+
+  return result;
 };
 
 export function* getDeleteTokenUrlSaga(action) {
   const { payload } = action;
   try {
     const data = yield call(getRemoveTokenFetchApi, payload);
-    const responseBody = data.json();
-    const json = yield responseBody;
-    yield put({ type: DELETE_URL, payload: { hash: payload, removeToken: json.removeToken } });
+
+    yield put({ type: DELETE_URL, payload: { hash: payload, removeToken: data.removeToken } });
   } catch (e) {
     yield put({ type: GET_DELETE_TOKEN_FAILURE, payload: e });
   }
 }
-export const deleteFetchApi = (hash, removeToken) => {
-  return fetch(`/${hash}/${removeToken}`, {
+
+export const deleteFetchApi = async (hash, removeToken) => {
+  const response = await fetch(`/${hash}/${removeToken}`, {
     method: "DELETE"
   });
+  const result = await response.json();
+  return result;
 };
 
 export function* deleteUrlSaga(action) {
   const { payload } = action;
   try {
     const data = yield call(deleteFetchApi, payload.hash, payload.removeToken);
-    const responseBody = data.json();
-    const json = yield responseBody;
-    yield put({ type: DELETE_URL_SUCCESS, payload: { hash: payload, removeToken: json.removeToken } });
+    yield put({ type: DELETE_URL_SUCCESS, payload: { hash: payload, removeToken: data.removeToken } });
   } catch (e) {
     yield put({ type: DELETE_URL_FAILURE, payload: e });
   }
