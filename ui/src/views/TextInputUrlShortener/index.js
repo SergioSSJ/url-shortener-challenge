@@ -7,7 +7,13 @@ import PropTypes from "prop-types";
 
 const styles = theme => ({
   button: {
-    backgroundColor: "#133c7a"
+    backgroundColor: "#133c7a",
+    marginTop:"20px",
+    color:"white"
+  },
+  textField: {
+    backgroundColor: "white",
+    width: "90%"
   }
 });
 
@@ -62,7 +68,7 @@ export class TextInputUrlShortener extends Component {
         <div className="text-input">
           <div>
             <TextField
-              style={{ backgroundColor: "white", width: "90%" }}
+              className={classes.textField}
               onChange={this.handleChange}
               inputRef={e => (this.textInput = e)}
               variant="outlined"
@@ -72,7 +78,6 @@ export class TextInputUrlShortener extends Component {
           <div>
             <Button
               className={classes.button}
-              style={{ marginTop: "20px", color: "white" }}
               variant="contained"
               disabled={!this.state.isValid}
               onClick={this.handleClick}
@@ -88,7 +93,7 @@ export class TextInputUrlShortener extends Component {
 
 TextInputUrlShortener.propTypes = {
   classes: PropTypes.object.isRequired,
-  createShortUrl:PropTypes.object.isRequired
+  createShortUrl: PropTypes.object.isRequired
 };
 
 //export default TextInputUrlShortener;

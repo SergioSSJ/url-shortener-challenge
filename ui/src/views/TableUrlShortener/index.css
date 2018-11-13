@@ -17,3 +17,6 @@
   display: flex;
   flex-direction: row;
 }
+.icon-text{
+    margin-left: 10px;
+}

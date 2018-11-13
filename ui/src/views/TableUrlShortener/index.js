@@ -41,11 +41,21 @@ const styles = theme => ({
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.background.default
     }
+  },
+  linkButton: {
+    backgroundColor: "green"
+  },
+  deleteButton: {
+    backgroundColor: "red"
   }
 });
 
 const goToUrl = url => {
-  window.open(url, "_blank");
+  try {
+    window.open(url, "_blank");
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const TableUrlShortener = props => {
@@ -59,17 +69,17 @@ const TableUrlShortener = props => {
             <CustomTableCell>Link</CustomTableCell>
             <CustomTableCell>Date</CustomTableCell>
             <CustomTableCell>Visits</CustomTableCell>
-            <CustomTableCell />
+            <CustomTableCell/>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.urlItems.map(row => {
             return (
               <TableRow className={classes.row} key={row.hash}>
-                <CustomTableCell component="th" scope="row" style={{ width: "100px" }}>
+                <CustomTableCell component="th" scope="row" >
                   <div className="short">
                     <LinkIcon />
-                    <div style={{ marginLeft: "10px" }} className="short-child">
+                    <div  className="short-child icon-text">
                       {row.shorten}
                     </div>
                   </div>
@@ -80,7 +90,7 @@ const TableUrlShortener = props => {
                 <CustomTableCell component="th" scope="row">
                   <div className="date">
                     <AccessTimeIcon />
-                    <div style={{ marginLeft: "10px" }}>{formatDate(row.date)}</div>
+                    <div className="icon-text">{formatDate(row.date)}</div>
                   </div>
                 </CustomTableCell>
                 <CustomTableCell component="th" scope="row">
@@ -89,7 +99,7 @@ const TableUrlShortener = props => {
                 <CustomTableCell component="th" scope="row">
                   <div className="buttons">
                     <Button
-                      style={{ backgroundColor: "green" }}
+                      className={classes.linkButton}
                       variant="contained"
                       onClick={() => {
                         goToUrl(row.url);
@@ -98,10 +108,10 @@ const TableUrlShortener = props => {
                       <GoIcon />
                     </Button>
                     <Button
-                      style={{ backgroundColor: "red" }}
+                      className={classes.deleteButton}
                       variant="contained"
                       onClick={() => {
-                        props.deleteUrl(row.hash);
+                      props.deleteUrl(row.hash);
                       }}
                     >
                       <DeleteIcon />
@@ -119,7 +129,7 @@ const TableUrlShortener = props => {
 
 TableUrlShortener.propTypes = {
   classes: PropTypes.object.isRequired,
-  deleteUrl:PropTypes.func.isRequired
+  deleteUrl: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(TableUrlShortener);
